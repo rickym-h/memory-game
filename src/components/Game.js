@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import CardContainer from "./CardContainer";
+import MyHeader from "./MyHeader";
 
 
 class Game extends Component {
@@ -21,22 +22,24 @@ class Game extends Component {
         if (this.state.clickedChampions.includes(champion)) {
             console.log("RESETTING")
             this.setState({
+                highScore: Math.max(this.state.currentScore, this.state.highScore),
                 currentScore: 0,
-                highScore: Math.max(this.state.currentScore, this.state.highScore)
+                clickedChampions: [],
+            })
+        } else {
+            this.setState({
+                clickedChampions: this.state.clickedChampions.concat(champion),
+                currentScore: this.state.currentScore+1,
             })
         }
 
-        this.setState({
-            clickedChampions: this.state.clickedChampions.concat(champion)
-        })
     }
 
     render() {
         return (
             <div>
-                This is the Game component
+                <MyHeader highScore={this.state.highScore} currScore={this.state.currentScore}/>
                 <CardContainer clickedChampions={this.state.clickedChampions} allChampions={this.state.allChampions} handleClick={this.clickedChamp}/>
-
             </div>
         );
     }

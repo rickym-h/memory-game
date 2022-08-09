@@ -3,12 +3,17 @@ import Card from "./Card";
 import "./CardContainer.css"
 import champImages from "../images/images"
 
-console.log(champImages)
 class CardContainer extends Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
 
+    }
+
+
+    removePunctuation(string) {
+        let regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\s]/g;
+        return string.replace(regex, '');
     }
 
     handleCLick = (champ) => {
@@ -68,7 +73,7 @@ class CardContainer extends Component {
             <div className={"card-container"}>
                 {tenChamps.map((c) => {
                     return (
-                        <Card key={c} name={c} clickChamp={(click)=>this.handleCLick(click)}/>
+                        <Card key={c} name={c} imgSrc={champImages[this.removePunctuation(c)]} clickChamp={(click)=>this.handleCLick(click)}/>
                     )
 
                 })}

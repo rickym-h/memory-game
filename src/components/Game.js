@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import CardContainer from "./CardContainer";
 import MyHeader from "./MyHeader";
+import InfoModal from "./InfoModal";
+import CongratulationsModal from "./CongratulationsModal";
+import champList from "../champions/champ-list"
 
 
 class Game extends Component {
@@ -12,7 +15,9 @@ class Game extends Component {
             highScore: 0,
             currentScore: 0,
             clickedChampions: [],
-            allChampions: ["Aatrox","Ahri","Akali","Akshan","Alistar","Amumu","Anivia","Annie","Aphelios","Ashe","Aurelion Sol","Azir","Bard","Bel'Veth","Blitzcrank","Brand","Braum","Caitlyn","Camille","Cassiopeia","Cho'Gath","Corki","Darius","Diana","Dr. Mundo","Draven","Ekko","Elise","Evelynn","Ezreal","Fiddlesticks","Fiora","Fizz","Galio","Gangplank","Garen","Gnar","Gragas","Graves","Gwen","Hecarim","Heimerdinger","Illaoi","Irelia","Ivern","Janna","Jarvan IV","Jax","Jayce","Jhin","Jinx","Kai'Sa","Kalista","Karma","Karthus","Kassadin","Katarina","Kayle","Kayn","Kennen","Kha'Zix","Kindred","Kled","Kog'Maw","LeBlanc","Lee Sin","Leona","Lillia","Lissandra","Lucian","Lulu","Lux","Malphite","Malzahar","Maokai","Master Yi","Miss Fortune","Mordekaiser","Morgana","Nami","Nasus","Nautilus","Neeko","Nidalee","Nocturne","Nunu & Willump","Olaf","Orianna","Ornn","Pantheon","Poppy","Pyke","Qiyana","Quinn","Rakan","Rammus","Rek'Sai","Rell","Renata Glasc","Renekton","Rengar","Riven","Rumble","Ryze","Samira","Sejuani","Senna","Seraphine","Sett","Shaco","Shen","Shyvana","Singed","Sion","Sivir","Skarner","Sona","Soraka","Swain","Sylas","Syndra","Tahm Kench","Taliyah","Talon","Taric","Teemo","Thresh","Tristana","Trundle","Tryndamere","Twisted Fate","Twitch","Udyr","Urgot","Varus","Vayne","Veigar","Vel'Koz","Vex","Vi","Viego","Viktor","Vladimir","Volibear","Warwick","Wukong","Xayah","Xerath","Xin Zhao","Yasuo","Yone","Yorick","Yuumi","Zac","Zed","Zeri","Ziggs","Zilean","Zoe","Zyra"]
+            allChampions: champList,
+            gameOver: false,
+            gameWon: false,
         }
 
     }
@@ -20,11 +25,16 @@ class Game extends Component {
     clickedChamp = (champion) => {
 
         if (this.state.clickedChampions.includes(champion)) {
-            console.log("RESETTING")
+            console.log("Game Over!")
             this.setState({
-                highScore: Math.max(this.state.currentScore, this.state.highScore),
-                currentScore: 0,
-                clickedChampions: [],
+                gameOver: true,
+            })
+        } else if (this.state.clickedChampions.length === this.state.allChampions.length-1) {
+            console.log("Game Won!")
+            this.setState({
+                gameWon: true,
+                clickedChampions: this.state.clickedChampions.concat(champion),
+                currentScore: this.state.currentScore+1,
             })
         } else {
             this.setState({
@@ -35,11 +45,24 @@ class Game extends Component {
 
     }
 
+    restartGame = () => {
+        console.log("resetting game")
+        this.setState({
+            highScore: Math.max(this.state.currentScore, this.state.highScore),
+            currentScore: 0,
+            clickedChampions: [],
+            gameOver: false,
+            gameWon: false,
+        })
+    }
+
     render() {
         return (
             <div>
                 <MyHeader highScore={this.state.highScore} currScore={this.state.currentScore}/>
                 <CardContainer clickedChampions={this.state.clickedChampions} allChampions={this.state.allChampions} handleClick={this.clickedChamp}/>
+                <InfoModal gameOver={this.state.gameOver} resetFunction={this.restartGame}/>
+                <CongratulationsModal gameWon={this.state.gameWon} resetFunction={this.restartGame}/>
             </div>
         );
     }

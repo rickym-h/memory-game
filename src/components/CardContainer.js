@@ -36,7 +36,6 @@ class CardContainer extends Component {
         let returnChamps = [];
         if (this.props.clickedChampions.length <= 5) {
             returnChamps = this.props.clickedChampions;
-            console.log("initial = " + returnChamps)
             // Fill with unclicked champs
             this.shuffle(unclickedChamps)
             returnChamps = returnChamps.concat(unclickedChamps.slice(0,10-this.props.clickedChampions.length))

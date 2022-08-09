@@ -42,7 +42,6 @@ class Game extends Component {
                 currentScore: this.state.currentScore+1,
             })
         }
-
     }
 
     restartGame = () => {

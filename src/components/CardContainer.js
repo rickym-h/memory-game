@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Card from "./Card";
-
+import "./CardContainer.css"
 
 class CardContainer extends Component {
     // eslint-disable-next-line no-useless-constructor
@@ -34,22 +34,27 @@ class CardContainer extends Component {
     getTenChampionsWithSomeUnclicked = () => {
         const unclickedChamps = this.props.allChampions.filter((champ)=>{return !this.props.clickedChampions.includes(champ)});
         let returnChamps = [];
+        let clonedArray;
         if (this.props.clickedChampions.length <= 5) {
             returnChamps = this.props.clickedChampions;
             // Fill with unclicked champs
-            this.shuffle(unclickedChamps)
-            returnChamps = returnChamps.concat(unclickedChamps.slice(0,10-this.props.clickedChampions.length))
+            clonedArray = [...unclickedChamps]
+            this.shuffle(clonedArray)
+            returnChamps = returnChamps.concat(clonedArray.slice(0,10-this.props.clickedChampions.length))
         } else if (unclickedChamps.length <= 5) {
             returnChamps = unclickedChamps;
             // Fill with clicked champs
-            this.shuffle(this.props.clickedChampions)
-            returnChamps = returnChamps.concat(this.props.clickedChampions.slice(0,10-unclickedChamps.length))
+            clonedArray = [...this.props.clickedChampions]
+            this.shuffle(clonedArray)
+            returnChamps = returnChamps.concat(clonedArray.slice(0,10-unclickedChamps.length))
         } else {
             //Standard case, fill with 5 clicked and 5 unclicked.
-            this.shuffle(unclickedChamps)
-            returnChamps = returnChamps.concat(unclickedChamps.slice(0,5))
-            this.shuffle(this.props.clickedChampions)
-            returnChamps = returnChamps.concat(this.props.clickedChampions.slice(0,5))
+            clonedArray = [...unclickedChamps]
+            this.shuffle(clonedArray)
+            returnChamps = returnChamps.concat(clonedArray.slice(0,5))
+            clonedArray = [...this.props.clickedChampions]
+            this.shuffle(clonedArray)
+            returnChamps = returnChamps.concat(clonedArray.slice(0,5))
         }
         this.shuffle(returnChamps);
         return returnChamps;
@@ -58,8 +63,7 @@ class CardContainer extends Component {
     render() {
         let tenChamps = this.getTenChampionsWithSomeUnclicked();
         return (
-            <div>
-                This is the CardContainer component
+            <div className={"card-container"}>
                 {tenChamps.map((c) => {
                     return (
                         <div key={c}>

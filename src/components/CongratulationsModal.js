@@ -17,7 +17,6 @@ class CongratulationsModal extends Component {
             <div className={"modal"}>
                 <div className={"modal-content-w"}>
                     <h4>You Win!!!</h4>
-                    <p>Clicked Champion Order: {this.props.clickedChamps}</p>
                     <button onClick={this.props.resetFunction}>Restart Game</button>
                 </div>
             </div>

@@ -13,12 +13,25 @@ class InfoModal extends Component {
             return null;
         }
 
+        let clickedChampList = [...this.props.clickedChamps]
+
+        let lastIndex = clickedChampList.length-1;
+
+        let index = clickedChampList.findIndex((c)=>{
+            return c === clickedChampList[lastIndex]
+        })
+
+        clickedChampList[index] = clickedChampList[index].toUpperCase();
+        clickedChampList[lastIndex] = clickedChampList[lastIndex].toUpperCase();
+
+        let championsString = clickedChampList.join(" -> ")
+
         return (
             <div className={"modal"}>
                 <div className={"modal-content-l"}>
                     <h4>Game Over!</h4>
-                    <p>Clicked Champions: {this.props.clickedChamps}</p>
-                    <button onClick={this.props.resetFunction}>Restart Game</button>
+                    <p>Clicked Champions: {championsString}</p>
+                    <button className={"restartButton"} onClick={this.props.resetFunction}>Restart Game</button>
                 </div>
             </div>
         );

@@ -17,7 +17,7 @@ class InfoModal extends Component {
             <div className={"modal"}>
                 <div className={"modal-content-l"}>
                     <h4>Game Over!</h4>
-                    <p>Clicked Champions: </p>
+                    <p>Clicked Champions: {this.props.clickedChamps}</p>
                     <button onClick={this.props.resetFunction}>Restart Game</button>
                 </div>
             </div>

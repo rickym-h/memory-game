@@ -8,3 +8,8 @@ body {
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+#root {
+  width: 80%;
+  height: 100%;
+}

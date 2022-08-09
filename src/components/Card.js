@@ -1,4 +1,7 @@
 import React, {Component} from "react";
+import "./card.css"
+import champImages from "../images/images";
+
 
 
 class Card extends Component {
@@ -12,13 +15,20 @@ class Card extends Component {
         this.props.clickChamp(c)
     }
 
+
+    removePunctuation(string) {
+        let regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\s]/g;
+        return string.replace(regex, '');
+    }
+
     render() {
+        let strippedName = this.removePunctuation(this.props.name)
+        console.log(strippedName)
         return (
-            <div>
-                <button onClick={()=>this.handleClick(this.props.name)}>
-                    <p>{this.props.name}</p>
-                </button>
-            </div>
+            <button className={"card"} onClick={()=>this.handleClick(this.props.name)}>
+                <img src={champImages[strippedName]} alt={strippedName}/>
+                <p>{this.props.name}</p>
+            </button>
         );
     }
 }

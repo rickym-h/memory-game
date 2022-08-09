@@ -3,7 +3,8 @@ import CardContainer from "./CardContainer";
 import MyHeader from "./MyHeader";
 import InfoModal from "./InfoModal";
 import CongratulationsModal from "./CongratulationsModal";
-import champList from "../champions/champ-list"
+import {champList} from "../champions/champ-list"
+import "./game.css"
 
 
 class Game extends Component {
@@ -58,7 +59,7 @@ class Game extends Component {
 
     render() {
         return (
-            <div>
+            <div className={"game-container"}>
                 <MyHeader highScore={this.state.highScore} currScore={this.state.currentScore}/>
                 <CardContainer clickedChampions={this.state.clickedChampions} allChampions={this.state.allChampions} handleClick={this.clickedChamp}/>
                 <InfoModal gameOver={this.state.gameOver} clickedChamps={this.state.clickedChampions} resetFunction={this.restartGame}/>

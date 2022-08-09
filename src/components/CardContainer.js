@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import Card from "./Card";
 import "./CardContainer.css"
+import champImages from "../images/images"
 
+console.log(champImages)
 class CardContainer extends Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
@@ -66,9 +68,7 @@ class CardContainer extends Component {
             <div className={"card-container"}>
                 {tenChamps.map((c) => {
                     return (
-                        <div key={c}>
-                            <Card name={c} clickChamp={(click)=>this.handleCLick(click)}/>
-                        </div>
+                        <Card key={c} name={c} clickChamp={(click)=>this.handleCLick(click)}/>
                     )
 
                 })}

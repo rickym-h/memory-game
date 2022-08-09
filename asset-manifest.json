@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/guide-react-gh-pages/static/css/main.36fbc0f3.css",
-    "main.js": "/guide-react-gh-pages/static/js/main.a9247afe.js",
-    "index.html": "/guide-react-gh-pages/index.html",
-    "main.36fbc0f3.css.map": "/guide-react-gh-pages/static/css/main.36fbc0f3.css.map",
-    "main.a9247afe.js.map": "/guide-react-gh-pages/static/js/main.a9247afe.js.map"
+    "main.css": "/memory-game/static/css/main.36fbc0f3.css",
+    "main.js": "/memory-game/static/js/main.a9247afe.js",
+    "index.html": "/memory-game/index.html",
+    "main.36fbc0f3.css.map": "/memory-game/static/css/main.36fbc0f3.css.map",
+    "main.a9247afe.js.map": "/memory-game/static/js/main.a9247afe.js.map"
   },
   "entrypoints": [
     "static/css/main.36fbc0f3.css",

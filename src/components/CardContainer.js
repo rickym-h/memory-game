@@ -79,7 +79,6 @@ class CardContainer extends Component {
                     )
 
                 })}
-                {tenChamps}
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import "./MyHeader.css"
 
 class MyHeader extends Component {
     // eslint-disable-next-line no-useless-constructor
@@ -10,8 +11,10 @@ class MyHeader extends Component {
         return (
             <div>
                 <h1>League Memory Game</h1>
-                <p>Highscore: {this.props.highScore}</p>
-                <p>Current Score: {this.props.currScore}</p>
+                <div className={"score-display"}>
+                    <p>Highscore: {this.props.highScore}</p>
+                    <p>Current Score: {this.props.currScore}</p>
+                </div>
             </div>
         )
     }

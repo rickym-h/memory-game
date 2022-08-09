@@ -69,14 +69,17 @@ class CardContainer extends Component {
 
     render() {
         let tenChamps = this.getTenChampionsWithSomeUnclicked();
+        console.log(tenChamps.length)
         return (
             <div className={"card-container"}>
                 {tenChamps.map((c) => {
+                    console.log(c)
                     return (
                         <Card key={c} name={c} imgSrc={champImages[this.removePunctuation(c)]} clickChamp={(click)=>this.handleCLick(click)}/>
                     )
 
                 })}
+                {tenChamps}
             </div>
         );
     }

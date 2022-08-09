@@ -19,6 +19,7 @@ class Game extends Component {
             allChampions: champList,
             gameOver: false,
             gameWon: false,
+            lastChamp: "",
         }
 
     }
@@ -28,14 +29,14 @@ class Game extends Component {
         if (this.state.clickedChampions.includes(champion)) {
             console.log("Game Over!")
             this.setState({
-                clickedChampions: this.state.clickedChampions.concat(champion),
+                lastChamp: champion,
                 gameOver: true,
             })
         } else if (this.state.clickedChampions.length === this.state.allChampions.length-1) {
             console.log("Game Won!")
             this.setState({
                 gameWon: true,
-                clickedChampions: this.state.clickedChampions.concat(champion),
+                lastChamp: champion,
                 currentScore: this.state.currentScore+1,
             })
         } else {
@@ -54,6 +55,7 @@ class Game extends Component {
             clickedChampions: [],
             gameOver: false,
             gameWon: false,
+            lastChamp: "",
         })
     }
 
@@ -62,7 +64,7 @@ class Game extends Component {
             <div className={"game-container"}>
                 <MyHeader highScore={this.state.highScore} currScore={this.state.currentScore}/>
                 <CardContainer clickedChampions={this.state.clickedChampions} allChampions={this.state.allChampions} handleClick={this.clickedChamp}/>
-                <InfoModal gameOver={this.state.gameOver} clickedChamps={this.state.clickedChampions} resetFunction={this.restartGame}/>
+                <InfoModal lastChamp={this.state.lastChamp} gameOver={this.state.gameOver} clickedChamps={this.state.clickedChampions} resetFunction={this.restartGame}/>
                 <CongratulationsModal gameWon={this.state.gameWon} clickedChamps={this.state.clickedChampions} resetFunction={this.restartGame}/>
             </div>
         );

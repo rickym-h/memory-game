@@ -15,6 +15,8 @@ class InfoModal extends Component {
 
         let clickedChampList = [...this.props.clickedChamps]
 
+        clickedChampList = clickedChampList.concat(this.props.lastChamp)
+
         let lastIndex = clickedChampList.length-1;
 
         let index = clickedChampList.findIndex((c)=>{
